@@ -2,7 +2,7 @@ import React from 'react'
 
 import {useState} from 'react';
 
-
+import Axios from "axios";
 import "../css/employees.css"
 
 const Employers = () => {
@@ -14,6 +14,18 @@ const Employers = () => {
   const [country, setCountry] = useState('')
   const [wage, setWage] = useState(0)
   
+
+  const addEmployee = () => {
+
+      Axios.post('http://localhost:3000/create', {
+        name: name, 
+        age: age, 
+        position: position, 
+        country: country, 
+        wage: wage,
+      })
+
+  }
 
 
   const displayInfo = () => {
@@ -44,7 +56,7 @@ const Employers = () => {
         <label>Wage:</label>
         <input type="number" onChange={(event) => {setWage(event.target.value)}} />
 
-        <button onClick={displayInfo}>Add Employee</button>
+        <button onClick={addEmployee}>Add Employee</button>
       </div>
       </div>
     )
